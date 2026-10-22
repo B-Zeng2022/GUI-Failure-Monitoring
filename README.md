@@ -2,8 +2,9 @@
 
 [English](readme.md) | [简体中文](readme_zh.md)
 
-Inference code for **What Makes a Wrong Click? An Empirical Analysis of Decision
-Reliability and Failure Detection in GUI Agents**.
+Inference code for **What Makes a Wrong Click? An Empirical Analysis of Decision Reliability and Failure Detection in GUI Agents**.
+
+![Framework](images/framework.png)
 
 Given an instruction, screenshot and optional interaction history, the code
 generates an action and measures three internal signals before execution:

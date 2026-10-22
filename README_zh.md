@@ -3,7 +3,9 @@
 [English](readme.md) | [简体中文](readme_zh.md)
 
 论文 **What Makes a Wrong Click? An Empirical Analysis of Decision Reliability
-and Failure Detection in GUI Agents** 的方法推理代码。
+and Failure Detection in GUI Agents** 的仓库。
+
+![Framework](images/framework.png)
 
 给定用户指令、屏幕截图和可选的交互历史，项目先生成下一步操作，再在操作执行前计算三个模型内部信号：推理熵 `H_CoT`、结构感知坐标不确定性 `U_coord`，以及推理与动作的表示耦合度 `C_RA`。可以使用预先校准并冻结的固定权重或逻辑回归模型，将三个信号融合为点击失败风险分数。
 
