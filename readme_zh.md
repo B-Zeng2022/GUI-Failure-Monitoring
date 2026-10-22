@@ -11,7 +11,7 @@ and Failure Detection in GUI Agents** 的仓库。
 
 支持 **AgentCPM-GUI-8B**、**MAI-UI-8B** 和 **UI-TARS-1.5-7B**。主实验的数据目录映射覆盖 CMGUI、CAGUI、AC-High 和 GUIOdyssey；另外保留 AITZ 与 AC-Low 的可选输入支持。
 
-本项目提供方法的推理实现，不包含数据集、模型权重、论文预测缓存或已经拟合的逻辑回归系数，也不保证复现论文结果表。原脚本中的坐标熵单位、UI-TARS 原生坐标和历史窗口等实现约定，见[方法与实现说明](docs/METHOD.md)。
+本项目提供方法的推理实现，不包含数据集、模型权重、论文预测缓存或已经拟合的逻辑回归系数。原脚本中的坐标熵单位、UI-TARS 原生坐标和历史窗口等实现约定，见[方法与实现说明](docs/METHOD.md)。
 
 ## 项目结构
 
@@ -35,8 +35,6 @@ requirements/                   两套模型环境和可选评测、融合依赖
 docs/                           环境、数据和方法的详细说明
 tests/                          合成数据上的数值与集成检查
 ```
-
-原来复制过来的探索实验脚本及配套依赖，完整保留在本地 `legacy/eval/`。该目录已被 Git 忽略，也不进入 Python 发布包，其中包括遮挡、缩放、注意力、不确定性锚点和多层表示等实验。当前主推理流程不导入这些归档代码。若编辑器隐藏了被忽略的目录，见[原始脚本清单与位置](docs/ORIGINAL_SCRIPTS.md)。
 
 ## 1. 配置模型环境与确认入口
 
@@ -234,15 +232,6 @@ python -m gui_failure fit-fusion --method logistic \
 
 `fit-fusion` 会在传入的全部校准样本上拟合用于部署的模型，不会自动执行或复现论文的五折 episode 分组交叉验证。
 
-## 验证与适用范围
-
-```bash
-python -m unittest discover -s tests -v
-```
-
-检查覆盖坐标不确定性的解析计算、严格输出解析、数据与历史隔离、冻结的融合参数，以及 token 与隐状态的位置对齐。安装 Torch 和 Transformers 后，会使用小型随机初始化模型，对照原始 logits 和末层隐状态验证提取逻辑，包括 Qwen3-VL 的不同隐状态返回约定。测试不需要 benchmark 数据。
-
-完整的十亿参数模型推理仍需相应权重和可用 GPU。已经执行的检查与尚未验证的范围见[验证记录](docs/VALIDATION.md)。隔离执行环境能否访问 GPU，与服务器是否安装显卡是两个问题；排查时应分别确认宿主机的 `nvidia-smi` 和实际推理环境的 CUDA 可见性。
 
 ## 许可证与致谢
 

@@ -17,10 +17,8 @@ The main benchmark directory mappings cover CMGUI, CAGUI, AC-High and
 GUIOdyssey. AITZ and AC-Low remain optional inputs.
 
 This release provides a runnable inference implementation of the method. It
-does not distribute datasets, model weights, paper predictions or fitted
-logistic coefficients. It does not claim to reproduce the paper's result
-tables. See [method and implementation choices](docs/METHOD.md) for entropy
-units, native UI-TARS coordinates and history settings inherited from the
+does not distribute datasets, model weights or fitted
+logistic coefficients. See [method and implementation choices](docs/METHOD.md) for entropy units, native UI-TARS coordinates and history settings inherited from the
 original scripts.
 
 ## Layout
@@ -45,12 +43,6 @@ requirements/                   model environments, optional evaluation/fusion
 docs/                           environment, data and method details
 tests/                          synthetic numerical and integration checks
 ```
-
-The copied exploratory scripts and their dependencies have been moved intact
-to `legacy/eval/`. This local archive is ignored by Git and excluded from Python
-distributions. It contains the old masking, zoom, attention, uncertainty-anchor
-and multilayer experiments. Public inference has no imports from that archive. See [the original-script
-inventory](docs/ORIGINAL_SCRIPTS.md) if your editor hides the ignored directory.
 
 ## 1. Configure a model environment
 
@@ -303,24 +295,6 @@ fusion emits an estimated error probability. Neither artifact is trained during
 inference. Fit separate artifacts for different backends/settings; do not fit
 on held-out test data. The fitting utility fits all supplied calibration rows;
 it does not reproduce the paper's five-fold episode-grouped evaluation.
-
-## Validation and scope
-
-```bash
-python -m unittest discover -s tests -v
-```
-
-Tests cover analytical coordinate scores, strict parsing, dataset/history
-isolation, frozen fusion and token/state alignment. When Transformers and Torch
-are installed, tiny randomly initialized models check the generation hook
-against raw logits and final-layer hidden states, including the distinct
-Qwen3-VL hidden-state convention. No benchmark data is required.
-Actual multi-billion-parameter inference still requires the corresponding
-checkpoint and a suitable GPU. Validation performed for this refactoring is
-recorded in [VALIDATION.md](docs/VALIDATION.md).
-GPU access inside an isolated execution environment can differ from the host's
-installed hardware. When diagnosing visibility, check the host's `nvidia-smi`
-and CUDA availability in the actual inference environment separately.
 
 ## License and acknowledgments
 

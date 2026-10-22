@@ -1,0 +1,15 @@
+include readme.md readme_zh.md LICENSE THIRD_PARTY_NOTICES.md .gitignore
+recursive-include docs *.md
+recursive-include requirements *.txt
+recursive-include tests *.py
+include eval/scripts_gui/run_inference.py
+include eval/scripts_gui/README.md
+include eval/eval_data/readme.md eval/eval_data/requirements.txt
+include eval/eval_data/process_ac.py eval/eval_data/process_odyssey.py
+include eval/eval_data/process_cmgui.py
+prune legacy
+prune model
+prune results
+prune outputs
+prune end_results
+global-exclude __pycache__ *.py[cod] *.safetensors *.bin *.npz *.npy
